@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --testPathIgnorePatterns /frontend/",
     "build": "cd frontend && npm run build",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-prebuild": "cd frontend && npm install && npm run build"
   },
   "author": "Matti Hyyppä",
   "license": "ISC",
