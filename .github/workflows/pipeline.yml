@@ -20,5 +20,11 @@ jobs:
         run: npm install --prefix frontend
       - name: "frontend: npm test"
         run: npm test --prefix frontend
-      - name: "frontend: npm run build"
-        run: npm run build --prefix frontend
+      - name: "build frontend"
+        run: npm run build
+      - name: "backend: npm install"
+        run: npm install
+      - name: "backend: npm run lint"
+        run: npm run lint
+      - name: "backend: npm test"
+        run: npm test
