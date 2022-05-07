@@ -34,6 +34,9 @@ jobs:
           SECRET_KEY: some random string
         run: npm test
       - name: e2e tests
+        env:
+          MONGODB_URI: mongodb://localhost:27017/db
+          SECRET_KEY: some random string
         uses: cypress-io/github-action@v2
         with:
           command: npm run e2e:test --prefix frontend
