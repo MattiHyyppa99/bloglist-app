@@ -26,5 +26,16 @@ jobs:
         run: npm install
       - name: "backend: npm run lint"
         run: npm run lint
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
       - name: "backend: npm test"
+        env:
+          TEST_MONGODB_URI: mongodb://localhost:27017/db
+          SECRET_KEY: some random string
         run: npm test
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run e2e:test --prefix frontend
+          start: npm start
+          wait-on: http://localhost:3001
