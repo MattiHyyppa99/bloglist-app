@@ -18,3 +18,7 @@ jobs:
           node-version: '16'
       - name: "frontend: npm install"
         run: npm install --prefix frontend
+      - name: "frontend: npm test"
+        run: npm test --prefix frontend
+      - name: "frontend: npm run build"
+        run: npm run build --prefix frontend
