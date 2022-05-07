@@ -73,6 +73,18 @@ jobs:
           healthcheck: https://fast-forest-79552.herokuapp.com/health
           checkstring: ok
           rollbackonhealthcheckfailed: true
+      - name: Successful deployment notification to Discord
+        if: success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failed build notification to Discord
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [build, deploy]
     if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
