@@ -37,13 +37,15 @@ jobs:
       - name: e2e tests
         env:
           PORT: 3001
-          MONGODB_URI: mongodb://localhost:27017/db-e2e
+          MONGODB_URI: mongodb://localhost:27017/db
           SECRET_KEY: secret
         uses: cypress-io/github-action@v2
         with:
           command: npm run e2e:test --prefix frontend
           start: npm start
           wait-on: http://localhost:3001
+      # If the e2e tests fail, upload the videos and screenshots recorded by Cypress
+      # as artifacts
       - name: Upload Cypress videos as artifacts
         uses: actions/upload-artifact@v1
         if: failure()
