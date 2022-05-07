@@ -63,12 +63,12 @@ jobs:
     needs: [build]
     steps:
       - name: deployment to Heroku
-          if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
-          uses: akhileshns/heroku-deploy@v3.12.12
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: fast-forest-79552
-            heroku_email: ${{secrets.HEROKU_EMAIL}}
-            healthcheck: https://fast-forest-79552.herokuapp.com/health
-            checkstring: ok
-            rollbackonhealthcheckfailed: true
+        if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: fast-forest-79552
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: https://fast-forest-79552.herokuapp.com/health
+          checkstring: ok
+          rollbackonhealthcheckfailed: true
