@@ -9,8 +9,6 @@ const testUser = {
 describe('Blog app', function() {
   before(function() {
     cy.request('POST', 'http://localhost:3001/api/users/', testUser)
-    const response = cy.request('POST', 'http://localhost:3001/api/login', { password: testUser.password, username: testUser.username })
-    console.log(response)
   })
 
   beforeEach(function() {
