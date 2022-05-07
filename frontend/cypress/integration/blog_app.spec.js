@@ -34,7 +34,7 @@ describe('Blog app', function() {
       cy.get('#password').type('wrong')
       cy.get('#login-button').click()
 
-      cy.contains('wrong credential')
+      cy.contains('Wrong credentials')
     })
 
     describe('When logged in', function() {
